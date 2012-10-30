@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+require 'bundler'
+Bundler.setup
+
+require_relative '../lib/postgres_connection'
+require_relative '../lib/bzzt'
+
+conn = PostgresConnectionByURL.new(ENV['DATABASE_URL'])
+t = Organ::Tissue.new(conn, Organ::ServerCell)
+
+t.run
